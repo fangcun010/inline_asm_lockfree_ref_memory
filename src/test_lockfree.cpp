@@ -267,10 +267,12 @@ void TestForAsmLockFreeQueue() {
 }
 
 extern "C" {
-	void __cdecl Free(lockfree_ref_memory_pointer ref_memory_pointer) {
+	void __cdecl Free(void *node) {
 		std::cout << "Free" << std::endl;
 	}
 }
+
+
 
 int main() {
 	/*std::cout << sizeof(unsigned short) << std::endl;
