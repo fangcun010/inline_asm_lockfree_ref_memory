@@ -268,7 +268,7 @@ void TestForAsmLockFreeQueue() {
 
 extern "C" {
 	void __cdecl Free(void *node) {
-		std::cout << (char *)node << std::endl;
+		std::cout<<"Free function:" << (char *)node << std::endl;
 		delete[]node;
 	}
 }
@@ -288,8 +288,10 @@ int main() {
 	char *p=new char[100];
 	strcpy(p, "hello world!");
 	auto pointer = lockfree_ref_memory_alloc(ref_memory, p);
+	
 	lockfree_ref_memory_add_ref(pointer);
 	lockfree_ref_memory_sub_ref(pointer);
+	std::cout << (char *)lockfree_ref_memory_get(pointer) << std::endl;
 	lockfree_ref_memory_sub_ref(pointer);
 
 

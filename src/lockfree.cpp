@@ -804,6 +804,13 @@ extern "C" {
 		}
 	}
 
+	void *__cdecl lockfree_ref_memory_get(lockfree_ref_memory_pointer ref_memory_pointer) {
+		__asm {
+			mov ebx,[ref_memory_pointer]
+			mov eax,[ebx+8]
+		}
+	}
+
 	void __cdecl lockfree_ref_memory_add_ref(lockfree_ref_memory_pointer ref_memory_pointer) {
 		__asm {
 			mov ebx,ref_memory_pointer

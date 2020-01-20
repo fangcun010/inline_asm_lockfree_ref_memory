@@ -117,6 +117,7 @@ extern "C" {
 	lockfree_ref_memory * __cdecl lockfree_create_ref_memory(lockfree_freelist *freelist, void *free_function);
 	void __cdecl lockfree_destroy_ref_memory(lockfree_ref_memory *ref_memory);
 	lockfree_ref_memory_pointer __cdecl lockfree_ref_memory_alloc(lockfree_ref_memory *ref_memory,void *node);
+	void *__cdecl lockfree_ref_memory_get(lockfree_ref_memory_pointer ref_memory_pointer);
 	void __cdecl lockfree_ref_memory_add_ref(lockfree_ref_memory_pointer ref_memory_pointer);
 	void __cdecl lockfree_ref_memory_sub_ref(lockfree_ref_memory_pointer ref_memory_pointer);
 }
