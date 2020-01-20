@@ -289,11 +289,14 @@ int main() {
 	strcpy(p, "hello world!");
 	auto pointer = lockfree_ref_memory_alloc(ref_memory, p);
 	
-	lockfree_ref_memory_add_ref(pointer);
-	lockfree_ref_memory_sub_ref(pointer);
 	std::cout << (char *)lockfree_ref_memory_get(pointer) << std::endl;
-	lockfree_ref_memory_sub_ref(pointer);
-
+	
+	auto t = new std::thread([pointer=pointer]() {
+		Sleep(5000);
+		lockfree_ref_memory_sub_ref(pointer);
+	});
+	t->join();
+	
 
 	lockfree_destroy_ref_memory(ref_memory);
 	lockfree_destroy_freelist(freelist);
