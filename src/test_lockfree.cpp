@@ -268,7 +268,8 @@ void TestForAsmLockFreeQueue() {
 
 extern "C" {
 	void __cdecl Free(void *node) {
-		std::cout << "Free" << std::endl;
+		std::cout << (char *)node << std::endl;
+		delete[]node;
 	}
 }
 
@@ -284,8 +285,9 @@ int main() {
 	//lockfree_stack *stack = lockfree_create_stack(freelist);
 	lockfree_ref_memory *ref_memory = lockfree_create_ref_memory(freelist, Free);
 
-	unsigned int val;
-	auto pointer = lockfree_ref_memory_alloc(ref_memory, &val);
+	char *p=new char[100];
+	strcpy(p, "hello world!");
+	auto pointer = lockfree_ref_memory_alloc(ref_memory, p);
 	lockfree_ref_memory_add_ref(pointer);
 	lockfree_ref_memory_sub_ref(pointer);
 	lockfree_ref_memory_sub_ref(pointer);
