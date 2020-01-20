@@ -74,30 +74,6 @@ extern "C" {
 		lockfree_freelist *freelist;
 	};
 
-	struct lockfree_vector_write_descriptor {
-		unsigned int old_value;
-		unsigned int new_value;
-		void *location;
-		unsigned int pending;
-	};
-
-	struct lockfree_vector_descriptor {
-		unsigned int ref_count;
-		unsigned int size;
-		lockfree_vector_write_descriptor pending;
-	};
-
-	struct lockfree_vector_descriptor_pointer {
-		lockfree_vector_descriptor *ptr;
-		unsigned int tag;
-	};
-
-	struct lockfree_vector {
-		lockfree_vector_descriptor_pointer descriptor;
-		lockfree_freelist *freelist;
-		void *memory[LOCKFREE_VECTOR_MAX_BUCKET_SIZE];
-	};
-
 	struct lockfree_ref_memory;
 
 	struct lockfree_ref_memory_node {
